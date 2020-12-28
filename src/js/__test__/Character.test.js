@@ -29,3 +29,61 @@ test("test name from class Character", () => {
 
   expect(received).toThrow(expected);
 });
+
+test("test levelUp from class Character", () => {
+  const pers = new Character("Char", "Bowman");
+  pers.levelUp();
+  const received = pers;
+  const expected = {
+    name: "Char",
+    type: "Bowman",
+    health: 100,
+    level: 2,
+    attack: 12,
+    defence: 10,
+  };
+
+  expect(received).toEqual(expected);
+});
+
+test("test damage from class Character", () => {
+  const pers = new Character("Char", "Bowman");
+  pers.damage(1);
+  const received = pers;
+  const expected = {
+    name: "Char",
+    type: "Bowman",
+    health: 99.1,
+    level: 1,
+    attack: 10,
+    defence: 10,
+  };
+
+  expect(received).toEqual(expected);
+});
+
+test("test damage for health = 0", () => {
+  const pers = new Character("Char", "Bowman");
+  pers.damage(1000);
+  const received = pers;
+  const expected = {
+    name: "Char",
+    type: "Bowman",
+    health: 0,
+    level: 1,
+    attack: 10,
+    defence: 10,
+  };
+
+  expect(received).toEqual(expected);
+});
+
+test("test levelUp for level = 0", () => {
+  const pers = new Character("Char", "Bowman");
+  pers.level = 0;
+  const received = () => pers.levelUp();
+
+  const expected = "нельзя повысить левел умершего";
+
+  expect(received).toThrow(expected);
+});
